@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://cl2vsdwoal1y0"]
+
+[ext_resource type="PackedScene" uid="uid://d2tg5da102d3" path="res://scenes/platform.tscn" id="1_23kvs"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_vvss7"]
+[ext_resource type="PackedScene" uid="uid://bx145q0imy2se" path="res://Actors/player.tscn" id="2_dpfib"]
+[ext_resource type="Material" uid="uid://ce7wjr3kylg0t" path="res://materials/green_solid.tres" id="2_ny8gl"]
+[ext_resource type="Material" uid="uid://bd4ucra0vsv1q" path="res://materials/red_solid.tres" id="3_jws85"]
+[ext_resource type="Material" uid="uid://bv0js4hgmewtt" path="res://materials/yellow_solid.tres" id="4_ckrx1"]
+[ext_resource type="Material" uid="uid://bnepytwbm51al" path="res://materials/magenta_solid.tres" id="5_ex1wu"]
+[ext_resource type="Material" uid="uid://no73mfondsri" path="res://materials/blue_solid.tres" id="6_vvq55"]
+[ext_resource type="PackedScene" uid="uid://cc1gm26t0j15w" path="res://scenes/room.tscn" id="9_7xsk3"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_vvss7")
+
+[node name="Platform" parent="." instance=ExtResource("1_23kvs")]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
+mat = ExtResource("2_ny8gl")
+
+[node name="Platform2" parent="." instance=ExtResource("1_23kvs")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 5, 25, 5, 0)
+mat = ExtResource("3_jws85")
+
+[node name="Platform3" parent="." instance=ExtResource("1_23kvs")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 5, 1, -4.37114e-08, 0, 4.37114e-08, 1, -2.18557e-07, 0, 5, 25)
+mat = ExtResource("4_ckrx1")
+
+[node name="Platform5" parent="." instance=ExtResource("1_23kvs")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 5, 1, -4.37114e-08, 0, 4.37114e-08, 1, -2.18557e-07, 0, 5, -25)
+mat = ExtResource("5_ex1wu")
+
+[node name="Platform4" parent="." instance=ExtResource("1_23kvs")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 5, -25, 5, 0)
+mat = ExtResource("6_vvq55")
+
+[node name="Player" parent="." instance=ExtResource("2_dpfib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.90889, 1.55526, -2.76055)
+
+[node name="DirectionalLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 19.8397, 0)
+omni_range = 70.0
+omni_attenuation = 0.1
+
+[node name="Room" parent="." instance=ExtResource("9_7xsk3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8114, 2.29491, -1.59127)
+mat = ExtResource("6_vvq55")

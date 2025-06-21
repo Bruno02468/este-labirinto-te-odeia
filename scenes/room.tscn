@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://cc1gm26t0j15w"]
+
+[ext_resource type="Script" path="res://scenes/room.gd" id="1_hfk3y"]
+[ext_resource type="Material" uid="uid://bd4ucra0vsv1q" path="res://materials/red_solid.tres" id="2_fqj56"]
+[ext_resource type="Material" uid="uid://no73mfondsri" path="res://materials/blue_solid.tres" id="3_h4ewu"]
+[ext_resource type="Material" uid="uid://bv0js4hgmewtt" path="res://materials/yellow_solid.tres" id="4_l7raw"]
+[ext_resource type="Material" uid="uid://ce7wjr3kylg0t" path="res://materials/green_solid.tres" id="5_ubuvp"]
+[ext_resource type="Material" uid="uid://bnepytwbm51al" path="res://materials/magenta_solid.tres" id="6_3c6w7"]
+
+[sub_resource type="TextMesh" id="TextMesh_i5l0q"]
+resource_local_to_scene = true
+material = ExtResource("6_3c6w7")
+text = "Text
+"
+font_size = 64
+
+[node name="Room" type="Node3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+script = ExtResource("1_hfk3y")
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+use_collision = true
+size = Vector3(3.04, 0.02, 3.04)
+
+[node name="NorthWall" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.51, 1.5, 0)
+use_collision = true
+size = Vector3(3.04, 0.02, 3.04)
+
+[node name="SouthWall" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -1.51, 1.5, 0)
+use_collision = true
+size = Vector3(3.04, 0.02, 3.04)
+
+[node name="EastWall" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.5, 1.51)
+use_collision = true
+size = Vector3(3.04, 0.02, 3.04)
+
+[node name="WestWall" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.5, -1.51)
+use_collision = true
+size = Vector3(3.04, 0.02, 3.04)
+
+[node name="Ceiling" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.01, 0)
+use_collision = true
+size = Vector3(3.04, 0.02, 3.04)
+
+[node name="Marks" type="Node3D" parent="."]
+
+[node name="NorthMark" type="CSGBox3D" parent="Marks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2, 0)
+size = Vector3(0.01, 0.2, 0.2)
+material = ExtResource("2_fqj56")
+
+[node name="SouthMark" type="CSGBox3D" parent="Marks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 2, 0)
+size = Vector3(0.01, 0.2, 0.2)
+material = ExtResource("3_h4ewu")
+
+[node name="EastMark" type="CSGBox3D" parent="Marks"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, 1.5)
+size = Vector3(0.01, 0.2, 0.2)
+material = ExtResource("4_l7raw")
+
+[node name="WestMark" type="CSGBox3D" parent="Marks"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2, -1.5)
+size = Vector3(0.01, 0.2, 0.2)
+material = ExtResource("5_ubuvp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.51275, 0)
+omni_range = 12.0
+
+[node name="RoomText" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.09278e-08, 0.25, 1.09278e-08, 0, -1.09278e-08, 0.25, 0.25, 1.09278e-08, 4.77671e-16, 0, 0, 0)
+mesh = SubResource("TextMesh_i5l0q")
+skeleton = NodePath("../OmniLight3D")

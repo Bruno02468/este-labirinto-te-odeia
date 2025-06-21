@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl2vsdwoal1y0"]
+
+[ext_resource type="PackedScene" uid="uid://d2tg5da102d3" path="res://scenes/platform.tscn" id="1_23kvs"]
+[ext_resource type="PackedScene" uid="uid://bx145q0imy2se" path="res://Actors/player.tscn" id="2_dpfib"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Platform" parent="." instance=ExtResource("1_23kvs")]
+
+[node name="Platform2" parent="." instance=ExtResource("1_23kvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_dpfib")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.34319, 0)

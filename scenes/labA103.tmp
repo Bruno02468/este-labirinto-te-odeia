@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj0onmsy3jvt2"]
+
+[ext_resource type="Script" path="res://scenes/labirint_test.gd" id="1_tqyeg"]
+[ext_resource type="PackedScene" uid="uid://bixl2bghc80tt" path="res://Actors/Player.tscn" id="8_q5ekm"]
+
+[node name="Labirint" type="Node3D"]
+script = ExtResource("1_tqyeg")
+N_Rooms = 2
+Ncols = null
+N_PortalsPerRoom = 4
+
+[node name="Player" parent="." instance=ExtResource("8_q5ekm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1583, 0.206401, -1.98227)
+target_pos = Vector3(0, 1, 0)

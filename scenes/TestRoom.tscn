@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://cl2vsdwoal1y0"]
+
+[ext_resource type="PackedScene" uid="uid://d2tg5da102d3" path="res://scenes/platform.tscn" id="1_23kvs"]
+[ext_resource type="Material" uid="uid://ce7wjr3kylg0t" path="res://materials/green_solid.tres" id="2_ny8gl"]
+[ext_resource type="Material" uid="uid://bd4ucra0vsv1q" path="res://materials/red_solid.tres" id="3_jws85"]
+[ext_resource type="Material" uid="uid://bv0js4hgmewtt" path="res://materials/yellow_solid.tres" id="4_ckrx1"]
+[ext_resource type="Material" uid="uid://bnepytwbm51al" path="res://materials/magenta_solid.tres" id="5_ex1wu"]
+[ext_resource type="Material" uid="uid://no73mfondsri" path="res://materials/blue_solid.tres" id="6_vvq55"]
+[ext_resource type="PackedScene" uid="uid://cpfo00q3j184l" path="res://Portals/Portal.tscn" id="9_2aard"]
+[ext_resource type="PackedScene" uid="uid://bixl2bghc80tt" path="res://Actors/Player.tscn" id="10_5xi7q"]
+
+[node name="TestRoom" type="Node3D"]
+
+[node name="Test Ambient" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="OmniLight3D" parent="Test Ambient"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 19.8397, 0)
+omni_range = 70.0
+omni_attenuation = 0.1
+
+[node name="Floor" parent="Test Ambient" instance=ExtResource("1_23kvs")]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
+mat = ExtResource("2_ny8gl")
+
+[node name="Wall1" parent="Test Ambient" instance=ExtResource("1_23kvs")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 5, 25, 5, 0)
+mat = ExtResource("3_jws85")
+
+[node name="Wall2" parent="Test Ambient" instance=ExtResource("1_23kvs")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 5, 1, -4.37114e-08, 0, 4.37114e-08, 1, -2.18557e-07, 0, 5, 25)
+mat = ExtResource("4_ckrx1")
+
+[node name="Wall3" parent="Test Ambient" instance=ExtResource("1_23kvs")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 5, 1, -4.37114e-08, 0, 4.37114e-08, 1, -2.18557e-07, 0, 5, -25)
+mat = ExtResource("5_ex1wu")
+
+[node name="Wall4" parent="Test Ambient" instance=ExtResource("1_23kvs")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 5, -25, 5, 0)
+mat = ExtResource("6_vvq55")
+
+[node name="Player" parent="." instance=ExtResource("10_5xi7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1583, 0.206401, -1.98227)
+target_pos = Vector3(-10, 0, -2)
+
+[node name="Portal" parent="." node_paths=PackedStringArray("other_portal") instance=ExtResource("9_2aard")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
+other_portal = NodePath("../Portal3")
+
+[node name="Portal2" parent="." node_paths=PackedStringArray("other_portal") instance=ExtResource("9_2aard")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, -5)
+other_portal = NodePath(".")
+
+[node name="Portal3" parent="." node_paths=PackedStringArray("other_portal") instance=ExtResource("9_2aard")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.18508, 1.30422, -0.321572)
+other_portal = NodePath("../Portal")

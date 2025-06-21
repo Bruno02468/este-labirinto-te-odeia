@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://dj0onmsy3jvt2"]
+
+[ext_resource type="Script" path="res://scenes/labirint_test.gd" id="1_tqyeg"]
+[ext_resource type="Script" path="res://scenes/timmer_label.gd" id="3_w2o8a"]
+[ext_resource type="PackedScene" uid="uid://bixl2bghc80tt" path="res://Actors/Player.tscn" id="8_q5ekm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ku4ri"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_53hcy"]
+font_size = 80
+font_color = Color(0, 1, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_467rq"]
+font_size = 80
+font_color = Color(1, 0, 0, 1)
+outline_size = 10
+
+[node name="Labirint" type="Node3D"]
+script = ExtResource("1_tqyeg")
+targetTime = 120.0
+N_Rooms = 10
+
+[node name="FinalCheckPoint" type="Area3D" parent="."]
+collision_mask = 3
+
+[node name="BoxCheck" type="CollisionShape3D" parent="FinalCheckPoint"]
+shape = SubResource("BoxShape3D_ku4ri")
+
+[node name="Player" parent="." instance=ExtResource("8_q5ekm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1583, 0.206401, -1.98227)
+target_pos = Vector3(0, 1, 0)
+
+[node name="HUD" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Win" type="Label" parent="HUD"]
+visible = false
+layout_mode = 0
+offset_left = 418.0
+offset_top = 264.0
+offset_right = 761.0
+offset_bottom = 374.0
+text = "You Won"
+label_settings = SubResource("LabelSettings_53hcy")
+
+[node name="Lost" type="Label" parent="HUD"]
+visible = false
+layout_mode = 0
+offset_left = 368.0
+offset_top = 208.0
+offset_right = 807.0
+offset_bottom = 431.0
+text = "Time Up !
+You Lost"
+label_settings = SubResource("LabelSettings_467rq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="HUD"]
+layout_mode = 2
+offset_left = 1.0
+offset_top = 8.0
+offset_right = 41.0
+offset_bottom = 31.0
+script = ExtResource("3_w2o8a")
+time_left = 2.0
+
+[node name="FinishTimer" type="Timer" parent="HUD"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="FinalCheckPoint" to="." method="_on_final_check_point_body_entered"]
+[connection signal="TimeUp" from="HUD/TimerLabel" to="." method="_on_timmer_label_time_up"]
