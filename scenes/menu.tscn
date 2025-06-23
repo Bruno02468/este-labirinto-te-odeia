@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3 uid="uid://btko2i1uuab7o"]
+
+[ext_resource type="Script" path="res://scenes/menu.gd" id="1_moye3"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_moye3")
+
+[node name="Base" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.329412, 0.329412, 0.329412, 1)
+
+[node name="CustomSelect" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 224.0
+offset_top = 120.0
+offset_right = 264.0
+offset_bottom = 160.0
+
+[node name="WindowBase" type="ColorRect" parent="CustomSelect"]
+offset_right = 704.0
+offset_bottom = 528.0
+color = Color(0.18359, 0.18359, 0.18359, 1)
+
+[node name="Title" type="RichTextLabel" parent="."]
+offset_left = 128.0
+offset_top = 40.0
+offset_right = 1024.0
+offset_bottom = 136.0
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center][shake rate=20.0 level=5 connected=1]Este Labirinto te Odeia[/shake][/center]"
+
+[node name="Dificults" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Easy" type="Button" parent="Dificults"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 176.0
+offset_right = 704.0
+offset_bottom = 272.0
+theme_override_font_sizes/font_size = 40
+text = "Easy"
+
+[node name="Medium" type="Button" parent="Dificults"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 288.0
+offset_right = 704.0
+offset_bottom = 384.0
+theme_override_font_sizes/font_size = 40
+text = "Medium"
+
+[node name="Hard" type="Button" parent="Dificults"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 400.0
+offset_right = 704.0
+offset_bottom = 496.0
+theme_override_font_sizes/font_size = 40
+text = "Hard"
+
+[node name="Custom" type="Button" parent="Dificults"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 512.0
+offset_right = 704.0
+offset_bottom = 608.0
+theme_override_font_sizes/font_size = 40
+text = "Custom
+"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="pressed" from="Dificults/Easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="Dificults/Medium" to="." method="_on_medium_pressed"]
+[connection signal="pressed" from="Dificults/Hard" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="Dificults/Custom" to="." method="_on_custom_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

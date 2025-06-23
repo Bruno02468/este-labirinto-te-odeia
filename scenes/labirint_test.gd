@@ -91,6 +91,10 @@ func getConList(N_Portals:int):
 	return conList
 
 func _enter_tree() -> void:
+	targetTime = Global.targetTime
+	N_Rooms = Global.N_Rooms
+	N_PortalsPerRoom = Global.N_PortalsPerRoom
+	
 	var N_Portals = N_Rooms * N_PortalsPerRoom - 2*(N_PortalsPerRoom-1)
 	
 	#### List Approach ####
@@ -197,6 +201,7 @@ func _on_timmer_label_time_up() -> void:
 	FinishTimer.start()
 	await FinishTimer.timeout
 	get_tree().paused = false
+	get_node("/root/Main").load_scene("res://scenes/menu.tscn")
 
 func _on_final_check_point_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
@@ -205,3 +210,4 @@ func _on_final_check_point_body_entered(body: Node3D) -> void:
 		FinishTimer.start()
 		await FinishTimer.timeout
 		get_tree().paused = false
+		get_node("/root/Main").load_scene("res://scenes/menu.tscn")

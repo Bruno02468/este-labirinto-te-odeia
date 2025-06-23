@@ -27,6 +27,11 @@ const MOVE_WAS_TELEPORT_THRESHOLD = 5.0
 
 var _tracked_phys_bodies = []
 
+var active := true
+
+func _exit_tree():
+	active = false
+
 # Edge case but possible. Adding this to prevent teleporting twice if body lands exactly on portal plane
 func _nonzero_sign(value):
 	var s = sign(value)
@@ -395,6 +400,12 @@ func find_by_class(node: Node, name_of_class : String):
 # rubberbands very quickly between the 2 portals. May happen rarely even without the incorrect y
 # rotation set
 func _check_shapecast_collision(body):
+	if not active:
+		return false
+
+	if not is_inside_tree() or get_world_3d() == null:
+		return false
+
 	$ShapeCast3D.force_shapecast_update()
 	for i in $ShapeCast3D.get_collision_count():
 		if $ShapeCast3D.get_collider(i) == body:
