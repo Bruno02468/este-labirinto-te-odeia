@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://btko2i1uuab7o"]
+[gd_scene load_steps=3 format=3 uid="uid://btko2i1uuab7o"]
 
 [ext_resource type="Script" path="res://scenes/menu.gd" id="1_moye3"]
+
+[sub_resource type="Theme" id="Theme_kvqap"]
+default_font_size = 40
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_moye3")
@@ -9,28 +12,6 @@ script = ExtResource("1_moye3")
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.329412, 0.329412, 0.329412, 1)
-
-[node name="CustomSelect" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 224.0
-offset_top = 120.0
-offset_right = 264.0
-offset_bottom = 160.0
-
-[node name="WindowBase" type="ColorRect" parent="CustomSelect"]
-offset_right = 704.0
-offset_bottom = 528.0
-color = Color(0.18359, 0.18359, 0.18359, 1)
-
-[node name="Title" type="RichTextLabel" parent="."]
-offset_left = 128.0
-offset_top = 40.0
-offset_right = 1024.0
-offset_bottom = 136.0
-theme_override_font_sizes/normal_font_size = 64
-bbcode_enabled = true
-text = "[center][shake rate=20.0 level=5 connected=1]Este Labirinto te Odeia[/shake][/center]"
 
 [node name="Dificults" type="Control" parent="."]
 layout_mode = 3
@@ -75,6 +56,81 @@ theme_override_font_sizes/font_size = 40
 text = "Custom
 "
 
+[node name="CustomSelect" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 224.0
+offset_top = 120.0
+offset_right = 928.0
+offset_bottom = 648.0
+
+[node name="WindowBase" type="ColorRect" parent="CustomSelect"]
+layout_mode = 0
+offset_right = 704.0
+offset_bottom = 528.0
+color = Color(0.18359, 0.18359, 0.18359, 1)
+
+[node name="Rooms" type="SpinBox" parent="CustomSelect"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 56.0
+offset_right = 544.0
+offset_bottom = 152.0
+theme = SubResource("Theme_kvqap")
+min_value = 4.0
+max_value = 1000.0
+value = 4.0
+alignment = 1
+prefix = "Rooms:     "
+
+[node name="Portals" type="SpinBox" parent="CustomSelect"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 166.0
+offset_right = 544.0
+offset_bottom = 262.0
+theme = SubResource("Theme_kvqap")
+min_value = 2.0
+max_value = 4.0
+value = 4.0
+alignment = 1
+prefix = "Portals:     "
+
+[node name="Time" type="SpinBox" parent="CustomSelect"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 280.0
+offset_right = 544.0
+offset_bottom = 376.0
+theme = SubResource("Theme_kvqap")
+min_value = 10.0
+max_value = 600.0
+step = 0.5
+value = 10.0
+alignment = 1
+prefix = "Time:     "
+suffix = "s"
+
+[node name="CustomGo" type="Button" parent="CustomSelect"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 392.0
+offset_right = 528.0
+offset_bottom = 488.0
+theme_override_font_sizes/font_size = 40
+text = "Let's Goooo !!
+"
+
+[node name="Title" type="RichTextLabel" parent="."]
+offset_left = 128.0
+offset_top = 40.0
+offset_right = 1024.0
+offset_bottom = 136.0
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center][shake rate=20.0 level=5 connected=1]Este Labirinto te Odeia[/shake][/center]"
+
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
@@ -82,4 +138,5 @@ autostart = true
 [connection signal="pressed" from="Dificults/Medium" to="." method="_on_medium_pressed"]
 [connection signal="pressed" from="Dificults/Hard" to="." method="_on_hard_pressed"]
 [connection signal="pressed" from="Dificults/Custom" to="." method="_on_custom_pressed"]
+[connection signal="pressed" from="CustomSelect/CustomGo" to="." method="_on_custom_go_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
