@@ -13,6 +13,58 @@ offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.329412, 0.329412, 0.329412, 1)
 
+[node name="MainTitle" type="RichTextLabel" parent="."]
+offset_left = 128.0
+offset_top = 40.0
+offset_right = 1024.0
+offset_bottom = 128.0
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center][shake rate=20.0 level=5 connected=1]Este Labirinto te Odeia[/shake][/center]"
+
+[node name="Title_1" type="RichTextLabel" parent="."]
+offset_left = 128.0
+offset_top = 40.0
+offset_right = 1024.0
+offset_bottom = 128.0
+theme_override_colors/default_color = Color(0.396078, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center][shake rate=200.0 level=50 connected=1]Este Labirinto te Odeia[/shake][/center]"
+
+[node name="Title_2" type="RichTextLabel" parent="."]
+offset_left = 128.0
+offset_top = 40.0
+offset_right = 1024.0
+offset_bottom = 128.0
+theme_override_colors/default_color = Color(0.396078, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center][shake rate=200.0 level=50 connected=1]Este Labirinto te Odeia[/shake][/center]"
+
+[node name="Title_3" type="RichTextLabel" parent="."]
+offset_left = 128.0
+offset_top = 40.0
+offset_right = 1024.0
+offset_bottom = 128.0
+theme_override_colors/default_color = Color(0.396078, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center][shake rate=200.0 level=50 connected=1]Este Labirinto te Odeia[/shake][/center]"
+
+[node name="Title_4" type="RichTextLabel" parent="."]
+offset_left = 128.0
+offset_top = 40.0
+offset_right = 1024.0
+offset_bottom = 128.0
+theme_override_colors/default_color = Color(0.396078, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center][shake rate=200.0 level=50 connected=1]Este Labirinto te Odeia[/shake][/center]"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [node name="Dificults" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -26,7 +78,7 @@ offset_top = 176.0
 offset_right = 704.0
 offset_bottom = 272.0
 theme_override_font_sizes/font_size = 40
-text = "Easy"
+text = "easy"
 
 [node name="Medium" type="Button" parent="Dificults"]
 layout_mode = 0
@@ -35,7 +87,7 @@ offset_top = 288.0
 offset_right = 704.0
 offset_bottom = 384.0
 theme_override_font_sizes/font_size = 40
-text = "Medium"
+text = "medium"
 
 [node name="Hard" type="Button" parent="Dificults"]
 layout_mode = 0
@@ -44,7 +96,7 @@ offset_top = 400.0
 offset_right = 704.0
 offset_bottom = 496.0
 theme_override_font_sizes/font_size = 40
-text = "Hard"
+text = "hard"
 
 [node name="Custom" type="Button" parent="Dificults"]
 layout_mode = 0
@@ -53,7 +105,7 @@ offset_top = 512.0
 offset_right = 704.0
 offset_bottom = 608.0
 theme_override_font_sizes/font_size = 40
-text = "Custom
+text = "custom
 "
 
 [node name="CustomSelect" type="Control" parent="."]
@@ -122,21 +174,9 @@ theme_override_font_sizes/font_size = 40
 text = "Let's Goooo !!
 "
 
-[node name="Title" type="RichTextLabel" parent="."]
-offset_left = 128.0
-offset_top = 40.0
-offset_right = 1024.0
-offset_bottom = 136.0
-theme_override_font_sizes/normal_font_size = 64
-bbcode_enabled = true
-text = "[center][shake rate=20.0 level=5 connected=1]Este Labirinto te Odeia[/shake][/center]"
-
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Dificults/Easy" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="Dificults/Medium" to="." method="_on_medium_pressed"]
 [connection signal="pressed" from="Dificults/Hard" to="." method="_on_hard_pressed"]
 [connection signal="pressed" from="Dificults/Custom" to="." method="_on_custom_pressed"]
 [connection signal="pressed" from="CustomSelect/CustomGo" to="." method="_on_custom_go_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var titleText = $Title
 @onready var diffs = $Dificults
 @onready var custom = $CustomSelect
 
@@ -9,7 +8,7 @@ extends Node2D
 @onready var customPortals = $CustomSelect/Portals
 @onready var customTime = $CustomSelect/Time
 
-var textUnshuffled : String = "Este Labirinto te Odeia"
+var textUnshuffled : String = "ESTE LABIRINTO TE ODEIA"
 var shuffleNow : bool = true
 
 func _ready() -> void:
@@ -22,7 +21,8 @@ func _ready() -> void:
 	Global.N_PortalsPerRoom = 4
 	Global.targetTime = 120.0
 	
-	$Title.text = "[center][shake rate=20.0 level=5 connected=1]%s[/shake][/center]" % textUnshuffled
+	titleScrambler()
+	$MainTitle.text = "[center][shake rate=20.0 level=5 connected=1]%s[/shake][/center]" % textUnshuffled
 
 func shuffle_string(s):
 	randomize()
@@ -30,6 +30,21 @@ func shuffle_string(s):
 	for c in s: a.append(c)
 	a.shuffle()
 	return "".join(a)
+
+func titleScrambler():
+	var children = get_children()
+	for title in children:
+		if title.name.split("_")[0] == "Title":
+			var x = randi_range(-150,1000)
+			var y = randi_range(128,500)
+			var _theta = randi_range(-180,180)
+			#title.rotation(deg_to_rad(theta))
+			title.position=Vector2(x,y)
+			var textEntry = textUnshuffled
+			if randf() > 0.5:
+				textEntry = shuffle_string(textUnshuffled)
+			title.text = "[center][shake rate=200.0 level=50 connected=1]%s[/shake][/center]" % textEntry
+	
 
 func _on_timer_timeout() -> void:
 	var textInsert = textUnshuffled
@@ -39,8 +54,9 @@ func _on_timer_timeout() -> void:
 	else:
 		shuffleNow = true
 
-	$Title.text = "[center][shake rate=20.0 level=5 connected=1]%s[/shake][/center]" % textInsert
-
+	$MainTitle.text = "[center][shake rate=20.0 level=5 connected=1]%s[/shake][/center]" % textInsert
+	titleScrambler()
+	
 func _on_easy_pressed() -> void:
 	Global.N_Rooms = 4
 	Global.targetTime = 120.0
